@@ -9,6 +9,8 @@ module.exports = class Command {
 
     if (global.viteServer) {
       launchUrl.port = global.viteServer.config.port;
+      const protocol = global.viteServer.config.server.https ? "https" : "http";
+      launchUrl.protocol = protocol;
     }
 
     launchUrl.pathname = '/_nightwatch/';
