@@ -167,7 +167,7 @@ module.exports = class Command {
           done(browserResult);
         }, 100);
       }, [Command.rootElementId]);
-   
+
     if (!result || !result.element || preRenderError || postRenderError) {
       const err = this.getError('Could not mount the component.');
       if (preRenderError) {
@@ -200,12 +200,10 @@ module.exports = class Command {
   }
 
   static _getReactImports() {
-    const {version} = require(path.resolve('node_modules', 'react'));
-    const reactDOMSuffix = version.startsWith('18') ? '/client': '';
 
     return `
       import * as React from 'react';
-      import * as ReactDOM from "react-dom${reactDOMSuffix}";
+      import * as ReactDOM from "react-dom/client";
     `;
   }
 
@@ -265,7 +263,7 @@ module.exports = class Command {
       return '';
     }
 
-    return 'import "/node_modules/vite-plugin-nightwatch/nightwatch/describe.js";';
+    return 'import "vite-plugin-nightwatch/nightwatch/describe.js";';
   }
 
   /**
@@ -284,11 +282,11 @@ module.exports = class Command {
 
     return `
 			const isComponentDefaultExported = typeof _csfDescription === 'undefined';
-			
+
 			const commonArgs = isComponentDefaultExported ? {} : (_csfDescription.args || {});
 			const componentArgs = Component.args || {};
       const inlineProps = ${propsToInsert} || {};
-      
+
       const props = { ...commonArgs, ...componentArgs, ...inlineProps };
 		`;
   }
@@ -300,26 +298,26 @@ module.exports = class Command {
 
       ${Command._getReactImports()}
       ${Command._addDescribeMocks(isJSX)}
-      
+
       ${Command._createComponentImport(Component)}
       ${Command._createIndexImport()}
-           
+
       ${Command._unifyReactDOM()}
       ${Command._createProps(props)}
-      
+
       const element = React.createElement(Component, props);
       const canvasElement = document.getElementById('${Command.rootElementId}');
       renderReactElement(element, canvasElement);
-      
+
       window.__nightwatch = {};
-       
+
       window['@component_class'] = Component;
       window['@component_element'] = element;
       window['@@component_props'] = props;
       window['@@canvas_element'] = canvasElement;
       window['@@playfn_result'] = null;
       window.__$$PlayFnError = null;
-      window.__$$PlayFnDone = false;         
+      window.__$$PlayFnDone = false;
     `;
   }
 
