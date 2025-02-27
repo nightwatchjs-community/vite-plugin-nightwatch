@@ -5,7 +5,7 @@ describe('Vite Nightwatch plugin basic tests', function() {
 
   it('test plugin config with defaults', function(done) {
     fs.readFile = (filename, encoding, callback) => {
-      assert.ok(filename.endsWith('vite-plugin-nightwatch/src/renderer.html'));
+      assert.ok(filename.endsWith('vite-plugin-nightwatch-fixes/src/renderer.html'));
       callback(null, '');
     };
 
@@ -39,7 +39,7 @@ describe('Vite Nightwatch plugin basic tests', function() {
 
   it('test plugin config with componentType=react', function(done) {
     fs.readFile = (filename, encoding, callback) => {
-      assert.ok(filename.endsWith('vite-plugin-nightwatch/src/renderer.html'));
+      assert.ok(filename.endsWith('vite-plugin-nightwatch-fixes/src/renderer.html'));
       callback(null, '');
     };
 

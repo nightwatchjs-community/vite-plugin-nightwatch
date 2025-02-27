@@ -263,7 +263,7 @@ module.exports = class Command {
       return '';
     }
 
-    return 'import "vite-plugin-nightwatch/nightwatch/describe.js";';
+    return 'import "vite-plugin-nightwatch-fixes/nightwatch/describe.js";';
   }
 
   /**
