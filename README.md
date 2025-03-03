@@ -14,7 +14,7 @@ npm install vite-plugin-nightwatch
 ## Usage:
 Update your [Vite configuration](https://vitejs.dev/config/):
 
-### 
+###
 ```js
 import nightwatchPlugin from 'vite-plugin-nightwatch'
 
@@ -75,7 +75,7 @@ This plugin includes a few Nightwatch commands which can be used while writing t
 - `options` – this can include:
   - `props` - properties to be passed to the Vue component, this will be serialized to JSON
   - `plugins`: if needed, a store (VueX or Pinia) and a router can be loaded together with the component
-  - `mocks`: this can be a list of url calls that can be mocked (will be passed to [sinon](https://sinonjs.org/) automatically); at the moment only [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) calls can be mocked, but XHR support will be added soon.  
+  - `mocks`: this can be a list of url calls that can be mocked (will be passed to [sinon](https://sinonjs.org/) automatically); at the moment only [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) calls can be mocked, but XHR support will be added soon.
 - `callback` – an optional callback function which will be called with the component element
 
 #### Example:
@@ -114,7 +114,7 @@ const component = await browser.mountReactComponent('/src/components/Form.jsx')
 ### - browser.launchComponentRenderer():
 This will call `browser.navigateTo('/nightwatch/')` and open the browser. Needs to be used before the `.importScript()` command, if used.
 
-You can also set `launchUrl` as a global at runtime and then the url to be used will be `${browser.globals.launchUrl}/nightwatch`, which makes it possible to set the launch url dynamically. 
+You can also set `launchUrl` as a global at runtime and then the url to be used will be `${browser.globals.launchUrl}/nightwatch`, which makes it possible to set the launch url dynamically.
 
 ### - browser.importScript(`scriptPath`, `[options]`, `[callback]`):
 **Parameters:**
@@ -133,7 +133,7 @@ const formComponent = await browser
 
 Example `scriptToImport.js`:
 ```js
-import {mount} from '/node_modules/@vue/test-utils/dist/vue-test-utils.esm-browser.js'
+import {mount} from '@vue/test-utils/dist/vue-test-utils.esm-browser.js'
 import Component from '/test/components/vue/Form.vue'
 
 let element = mount(Component, {
@@ -155,7 +155,7 @@ However, for when running the tests in Chrome, you can use the DevTools to do de
 - `--debug` - this will cause the test execution to pause right after the component is rendered
 
 
-## Running the Vite dev-server programmatically from Nightwatch 
+## Running the Vite dev-server programmatically from Nightwatch
 It is also possible to start the Vite dev server from the Nightwatch global `before` hook and close it in the `after` hook.
 
 We are doing that as part of the tests for this plugin. Here's how your external `globals.js` file should look like:
@@ -218,7 +218,7 @@ To run the React component tests:
 ```sh
 npm run test-react
 ```
- 
+
 
 ## License
 MIT

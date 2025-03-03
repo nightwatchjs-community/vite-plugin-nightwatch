@@ -77,7 +77,7 @@ module.exports = class Command {
         document.body.appendChild(scriptTag);
       }, [`
         const Component = window['@@component_class'];
-        
+
         if (Component && (typeof Component.play == 'function')) {
           try {
             window['@@playfn_result'] = await Component.play({
@@ -130,7 +130,7 @@ module.exports = class Command {
     }
 
     return `
-			import {mount} from '/node_modules/@vue/test-utils/dist/vue-test-utils.esm-browser.js';
+			import {mount} from '@vue/test-utils/dist/vue-test-utils.esm-browser.js';
 			${pluginImports}
 		`;
   }
@@ -149,13 +149,13 @@ module.exports = class Command {
       }
     });
   }
-  
+
   const stubedFetch = sinon.stub(window, 'fetch');
       `;
 
     let mockFetchItemsContent = '';
     if (definitions.length > 0) {
-      mockContent = 'import sinon from \'/node_modules/sinon/pkg/sinon-esm.js\';';
+      mockContent = 'import sinon from \'sinon/pkg/sinon-esm.js\';';
       mockFetchItemsContent = definitions.reduce((prev, mockUrl) => {
         const {body, type = 'fetch'} = mocks[mockUrl];
         if (type === 'fetch') {
@@ -191,9 +191,9 @@ module.exports = class Command {
     return `
       ${Command._getVueImports(opts.plugins)}
       import Component from '${componentName}'
-      
+
       ${Command._getMockContent(opts.mocks)}
-      
+
       let element = mount(Component, {
         attachTo: document.getElementById('app'),
         props: ${JSON.stringify(opts.props)},
@@ -202,10 +202,10 @@ module.exports = class Command {
         }
       });
       window['@@component_element'] = element;
-      window['@@component_class'] = Component; 
+      window['@@component_class'] = Component;
       window['@@playfn_result'] = null;
       window.__$$PlayFnError = null;
-      window.__$$PlayFnDone = false;           
+      window.__$$PlayFnDone = false;
     `;
   }
 };

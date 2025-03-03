@@ -11,6 +11,11 @@ declare module 'nightwatch' {
       options: { scriptType: string; componentType: string },
       callback?: () => void
     ): this;
+    mountComponent<TProps extends Record<string, any>>(
+      componentPath: string,
+      props?: TProps,
+      callback?: (this: NightwatchAPI, result: Element) => void
+    ): Awaitable<this, Element>;
     mountReactComponent<TProps extends Record<string, any>>(
       componentPath: string,
       props?: TProps,
